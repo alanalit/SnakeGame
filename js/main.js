@@ -2,6 +2,7 @@ let canvas = document.getElementById("snake");
 let context = canvas.getContext("2d");
 let box = 32;
 let snake = [];
+let infoScore = document.getElementById("pontuacao");
 snake[0] = {
     x: 8 * box,
     y: 8 * box
@@ -38,6 +39,10 @@ function update(event){
     if(event.keyCode == 40 && direction != "up") direction = "down";
 }
 
+function scored(){
+    infoScore.innerHTML = 'Pontuação: \n' + (snake.length - 1) + ' pontos ';
+}
+
 function iniciarGame(){
     if(snake[0].x > 15 * box && direction== 'right') snake[0].x = 0;
     if(snake[0].x < 0 * box && direction== 'left') snake[0].x = 16 * box;
@@ -54,6 +59,7 @@ function iniciarGame(){
     criarBG();
     criarSnake();
     drawFood();
+    scored();
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
